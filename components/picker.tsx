@@ -26,6 +26,7 @@ export default function ToggleablePicker() {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
+        <Text style={styles.pickerText}> Select Workout </Text>
           <View style={styles.pickerContainer}>
             <Picker
               selectedValue={selectedWorkout}
@@ -80,9 +81,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparent background
   },
   pickerContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#E8DAEF',
     borderRadius: 10,
     padding: 16,
     width: '80%',
   },
+  pickerText: {
+    alignItems: 'center',
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
+    paddingBottom: 10,
+    paddingTop: 10,
+    backgroundColor: '#D5B9F5', // Light purple for the button
+    borderRadius: 8, // Small border radius for rounded edges
+    marginVertical: 10, // Reduce the vertical margin for less space above/below
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 2,
+  }
 });

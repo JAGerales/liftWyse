@@ -1,5 +1,5 @@
 // imports
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import { StyleSheet, Text, View, TouchableOpacity, Touchable } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -12,13 +12,39 @@ type LogListProps = {
 
 export default function LogList({ setNumber, reps, setWeight }: LogListProps) {
   const [isChecked, setIsChecked] = useState(false);
+  const [adjustedReps, setAdjustedReps] = useState(reps);
+  const [adjustedWeight, setAdjustedWeight] = useState(setWeight);
 
   // CREATE HANDLER FOR NOTE CREATION (PASS SET NUMBER)
   
+  const checkValues = () => {
+    // If number && greater than 999, set to 1000 | display value less than 999 or 0
+    const finalReps = !isNaN(reps) && reps > 999 ? 1000 : reps || 0;
+    const finalWeight = !isNaN(setWeight) && setWeight > 999 ? 1000 : setWeight || 0;
+
+    setAdjustedReps(finalReps);
+    setAdjustedWeight(finalWeight);
+  };
+
+  useEffect(() => {
+    checkValues();
+  }, [reps, setWeight]);
+
   return (
     <View style={styles.listItem}> 
-      {/* Set Details */}
-      <Text style={styles.text}>Set {setNumber}:       {reps} Reps    |    {setWeight} LBs</Text> 
+      
+      {/* Abomination */}
+      <Text style={styles.text}>
+        Set {setNumber} : &nbsp;  
+        {adjustedReps === 1000 && adjustedWeight === 1000 
+          ? `${adjustedReps}+ Reps | ${adjustedWeight}+ LBs`
+          : adjustedReps === 1000 
+            ? `${adjustedReps}+ Reps | ${adjustedWeight} LBs`
+            : adjustedWeight === 1000 
+              ? `${adjustedReps} Reps | ${adjustedWeight}+ LBs`
+              : `${adjustedReps} Reps | ${adjustedWeight} LBs`
+          }
+      </Text>
 
       {/* Checkbox */}
       <TouchableOpacity onPress={() => setIsChecked(!isChecked)} style={styles.checkbox}>

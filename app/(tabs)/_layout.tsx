@@ -19,7 +19,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="log"
         options={{
-          title: 'Log',
+          title: 'Plan',
           tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons 
             name={focused ? 'pencil-plus' : 'pencil-plus-outline'} 

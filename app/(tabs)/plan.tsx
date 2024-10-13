@@ -88,9 +88,9 @@ export default function LogPage() {
               value={weightInput}
               onChangeText={setWeightInput}
             />
+            
             <TouchableOpacity style={styles.button} onPress={handleAddSet}>
                 <Text style={styles.buttonTitle}>Confirm Set</Text>
-
             </TouchableOpacity>
             
             <Pressable style={styles.closeButton} onPress={() => setModalVisible(false)}>
@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
   workoutButton: {
     marginTop: 20,
     justifyContent: 'center',
-    flexDirection: 'row',
     borderRadius: 5,
     backgroundColor: '#4A148C'
   },

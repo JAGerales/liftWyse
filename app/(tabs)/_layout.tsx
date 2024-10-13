@@ -15,9 +15,19 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
       }}>
+      {/* Home tab */}
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name={'home'} color={color} size={26} />
+          ),
+        }}
+      />
       {/* Log Tab */}
       <Tabs.Screen
-        name="log"
+        name="plan"
         options={{
           title: 'Plan',
           tabBarIcon: ({ color, focused }) => (
@@ -29,23 +39,13 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* Workouts Tab */}
+      {/* Lift Tab */}
       <Tabs.Screen
-        name="workouts"
+        name="lift"
         options={{
-          title: 'Workouts',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'barbell' : 'barbell-sharp'} color={color} />
-          ),
-        }}
-      />
-      {/* Home Tab */}
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          title: 'Lift',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name={'cards'} color={color} size={26}/>
           ),
         }}
       />

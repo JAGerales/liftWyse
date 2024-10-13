@@ -11,7 +11,6 @@ type LogListProps = {
 
 
 export default function LogList({ setNumber, reps, setWeight }: LogListProps) {
-  const [isChecked, setIsChecked] = useState(false);
   const [adjustedReps, setAdjustedReps] = useState(reps);
   const [adjustedWeight, setAdjustedWeight] = useState(setWeight);
 
@@ -46,14 +45,7 @@ export default function LogList({ setNumber, reps, setWeight }: LogListProps) {
           }
       </Text>
 
-      {/* Checkbox */}
-      <TouchableOpacity onPress={() => setIsChecked(!isChecked)} style={styles.checkbox}>
-        <MaterialIcons
-          name={isChecked? 'check-box' : 'check-box-outline-blank'}
-          size={24}
-          color="black"
-        />
-      </TouchableOpacity>
+      {/* Edit Button (Allows user to change values of set) */}
       <TouchableOpacity onPress={() => console.log(`Edit Note for ${setNumber}`)} style={styles.editButton}>
         <MaterialIcons name="edit" size={24} color="black"></MaterialIcons>
       </TouchableOpacity>

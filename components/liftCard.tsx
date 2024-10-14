@@ -23,9 +23,9 @@ const Card: React.FC<CardProps> = ({ workoutName, setNumber, targetReps, targetW
   };
 
   const handleSwipeEnd = () => {
-    if (translateX.value > width * 0.25) {
+    if (translateX.value > width * 0.1825) {
       runOnJS(onSwipeRight)();
-    } else if (translateX.value < -width * 0.25) {
+    } else if (translateX.value < -width * 0.1825) {
       runOnJS(onSwipeLeft)();
     }
     translateX.value = withSpring(0);
@@ -63,11 +63,11 @@ const Card: React.FC<CardProps> = ({ workoutName, setNumber, targetReps, targetW
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container: { // fix for background here ? 
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f0f0f0',
+
   },
   card: {
     width: width * 0.9,

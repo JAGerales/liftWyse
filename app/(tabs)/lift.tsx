@@ -2,13 +2,8 @@ import { Text, View, Button, StyleSheet } from 'react-native';
 import React, {useState} from 'react';
 import Swiper from 'react-native-deck-swiper'
 import  Card  from '@/components/liftCard'
-import { StackNavigationProp } from '@react-navigation/stack';
 
-interface LiftPageProps {
-  navigation: StackNavigationProp<any>;
-}
-
-const LiftPage: React.FC<LiftPageProps> = ({navigation}) => {
+const LiftPage: React.FC<[]> = () => {
   const [allSwiped, setAllSwiped] = useState(false);
   const cardData = [
     { workoutName: 'Bench Press', setNumber: 1, targetReps: 8, targetWeight: 185 },
@@ -28,7 +23,7 @@ const LiftPage: React.FC<LiftPageProps> = ({navigation}) => {
 
   const handleAddWorkout = () => {
     setAllSwiped(false);
-    navigation.navigate('plan');
+    // button to navigate to plan 
   }
 
   return ( // GRAB CARD VALS FROM DB (TODO) GRAB STACK SIZE FROM DB (TODO) HANDLE CALL TO ACTION (TODO) HANDLE SYMBOL PRESS TO SWIPE (TODO)

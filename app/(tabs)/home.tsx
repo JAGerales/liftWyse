@@ -3,6 +3,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import 'expo-router/entry';
 
 export default function HomeScreen() {
   return (

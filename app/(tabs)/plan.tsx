@@ -3,7 +3,7 @@ import { View, Button,  StyleSheet, Text, ScrollView, Modal, Pressable, TextInpu
 import { Divider } from '@rneui/themed';
 import LogList from "../../components/logList"
 import ToggleablePicker from "@/components/picker";
-
+import { addWorkout } from "@/firebase/fbService"
 
 type SetType = {
   setNumber: number,
@@ -31,8 +31,18 @@ export default function LogPage() {
     setModalVisible(false);
   };
 
+  // works and is sending to db              
   const handleAddWorkout = () => { // REST API that should send workout info to db
-    console.log("Workout Added!");
+    // TODO (SEND WORKOUT NAME FROM PICKER )
+    let counter = 1;
+    for (const set of sets){
+      console.log("Going into add workout", ++counter);
+      addWorkout("workout name here", set);
+    }
+
+    setSets([]);
+    setRepsInput("");
+    setWeightInput("");
   };
 
   return (

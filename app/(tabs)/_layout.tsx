@@ -3,7 +3,6 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {

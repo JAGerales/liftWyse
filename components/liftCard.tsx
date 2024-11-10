@@ -40,10 +40,10 @@ const Card: React.FC<CardProps> = ({ workoutName, setNumber, targetReps, targetW
       <PanGestureHandler onGestureEvent={handleGestureEvent} onEnded={handleSwipeEnd}>
         <Animated.View style={[styles.card, animatedStyle]}>
           <Text style={styles.heading}>{workoutName}</Text>
-          <Text style={styles.subheading}>Set {setNumber}</Text>
+          <Text style={styles.subheading}>Set {setNumber || 'N/A'}</Text>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>Reps: {targetReps}</Text>
-            <Text style={styles.infoText}>Weight: {targetWeight} lbs</Text>
+            <Text style={styles.infoText}>Reps: {targetReps || 'N/A'}</Text>
+            <Text style={styles.infoText}>Weight: {targetWeight || 'N/A'} lbs</Text>
           </View>
           <View style={styles.actionsContainer}>
             <TouchableOpacity onPress={onSwipeLeft} style={styles.iconButton}>

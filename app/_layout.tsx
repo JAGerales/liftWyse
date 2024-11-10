@@ -6,6 +6,8 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { View, ActivityIndicator } from 'react-native';
 
+import { app } from '@/firebase/fbConfig';
+
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 

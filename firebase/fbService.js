@@ -23,26 +23,27 @@ const addWorkout = async (workoutName, userSet, userId = 1) => {
     }
 };
 
-// Fetch each set info from DB in FIFO order [ TEST ]
+// patch edge cases [TODO]
 const fetchWorkouts = async (userId = 1) => { // userId is passed as arg
     const db = database;
     const dbRef = dbFunctions.ref(db, `users/${userId}/workouts`);
     const workouts = [];
     try{
         const snapshot = await dbFunctions.get(dbRef);
-
+        console.log("Full snapshot [fetchWorkouts]:", snapshot);
         if (snapshot.exists()){
             snapshot.forEach((childSnapshot) => {
                 const workoutData = childSnapshot.val();
-                console.log("workout data:", workoutData);
+                console.log("workout data [fetchWorkouts]:", workoutData);
                 const workout = {
                     workoutName: workoutData.workoutName || 'Untitled Workout',
                     setNumber: workoutData.setNumber,
-                    targetReps: workoutData.targetReps,
-                    targetWeight: workoutData.targetWeight,
+                    targetReps: workoutData.reps,
+                    targetWeight: workoutData.setWeight,
                     id: childSnapshot.key
                     
                 }
+                console.log("final workout object [fetchWorkouts]:", workout);
                 workouts.push(workout);
             });
         }

@@ -16,6 +16,7 @@ export default function LogPage() {
   const [repsInput, setRepsInput] = useState("");
   const [weightInput, setWeightInput] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedWorkout, setSelectedWorkout] = useState<string>('');
 
   const handleAddSet = () => { // should be able to pass user data into this new object 
     const newSet = { 
@@ -33,13 +34,11 @@ export default function LogPage() {
 
   const handleAddWorkout = () => { // REST API that should send workout info to db
     // TODO (Add picker into api call)
-    let counter = 1;
 
     for (const set of sets){
-      console.log("adding set # ", counter);
-      counter++;
-      console.log(set);
-      addWorkout("picker name here", set);
+      console.log("adding set: ", set);
+      console.log("workout name: ", selectedWorkout)
+      addWorkout(selectedWorkout, set);
     }
 
     setSets([]);
@@ -47,13 +46,17 @@ export default function LogPage() {
     setWeightInput("");
   };
 
+  const onSelectWorkout = (workout: string) => {
+    setSelectedWorkout(workout);
+  }
+
   return (
     <View style={styles.container}>
 
       <Text style={styles.header}>Plan Workout</Text>
 
       {/* Workout Picker */}
-      <ToggleablePicker></ToggleablePicker> 
+      <ToggleablePicker selectedWorkout={selectedWorkout} onSelectWorkout={onSelectWorkout}></ToggleablePicker> 
 
       <Divider width={5}/>
 

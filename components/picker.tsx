@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 import { Modal, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-export default function ToggleablePicker() {
-  const [selectedWorkout, setSelectedWorkout] = useState('Squat');
+type ToggleablePickerProps = {
+  selectedWorkout: string;
+  onSelectWorkout: (workout: string) => void;
+}
+export default function ToggleablePicker({ selectedWorkout, onSelectWorkout }: ToggleablePickerProps) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const workouts = ['Squat', 'Bench', 'Deadlift'];
+
+  const handleValueChange = (itemValue: string) => {
+    onSelectWorkout(itemValue);
+    setModalVisible(false);
+  }
 
   return (
     <View style={styles.container}>
@@ -15,7 +23,7 @@ export default function ToggleablePicker() {
         style={styles.pickerButton}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.selectedText}>{selectedWorkout}</Text>
+        <Text style={styles.selectedText}>{selectedWorkout || "Squat"}</Text>
       </TouchableOpacity>
 
       {/* Modal for the picker */}
@@ -26,14 +34,11 @@ export default function ToggleablePicker() {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-        <Text style={styles.pickerText}> Select Workout </Text>
+          <Text style={styles.pickerText}> Select Workout </Text>
           <View style={styles.pickerContainer}>
             <Picker
               selectedValue={selectedWorkout}
-              onValueChange={(itemValue) => {
-                setSelectedWorkout(itemValue);
-                setModalVisible(false); // Close modal after selection
-              }}
+              onValueChange={handleValueChange}
             >
               {workouts.map((workout, index) => (
                 <Picker.Item key={index} label={workout} value={workout} />

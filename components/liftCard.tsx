@@ -20,15 +20,18 @@ const Card: React.FC<CardProps> = ({ workoutName, setNumber, targetReps, targetW
 
   const handleGestureEvent = (event: PanGestureHandlerGestureEvent) => {
     translateX.value = event.nativeEvent.translationX;
+    console.log("Gesture X:", translateX.value);
   };
 
   const handleSwipeEnd = () => {
-    if (translateX.value > width * 0.1825) {
+    if (translateX.value > width * 0.3) {
+      console.log("Right swipe");
       runOnJS(onSwipeRight)();
-    } else if (translateX.value < -width * 0.1825) {
+    } else if (translateX.value < -width * 0.3) {
+      console.log("Left swipe");
       runOnJS(onSwipeLeft)();
     }
-    translateX.value = withSpring(0);
+    translateX.value = withSpring(0); // reset pos
   };
 
   const animatedStyle = useAnimatedStyle(() => ({

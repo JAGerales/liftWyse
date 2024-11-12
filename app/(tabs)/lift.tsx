@@ -37,6 +37,9 @@ const LiftPage: React.FC<[]> = () => {
 
   const getData = async () => {
     try {
+      if (workouts.length > 0){
+        return;
+      }
       setLoading(true);
       const data = await fetchWorkouts(1); // should pass in unique userId
       setWorkouts(data);
@@ -76,7 +79,6 @@ const LiftPage: React.FC<[]> = () => {
         <Swiper
           cards={workouts}
           renderCard={(card: Workout) => {
-            console.log('Rendering card:', card);
             return (
               <Card
                 workoutName={card.workoutName}

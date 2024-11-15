@@ -26,7 +26,7 @@ Features
 
 # Technologies Used
 
-    Frontend: React Native [HTMLS, CSS], Expo Go SDK
+    Frontend: React Native [HTML, CSS], Expo Go SDK
     Backend: TypeScript, Firebase Realtime Database (RDB)
     Version Control: GitHub, following a CI/CD approach
 

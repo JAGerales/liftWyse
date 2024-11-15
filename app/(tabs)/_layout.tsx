@@ -1,25 +1,48 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
+import { Platform } from 'react-native';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  const activeColor = '#9333EA'; // purple
   return (
     <Tabs
+    initialRouteName='home'
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: activeColor,
+        tabBarInactiveTintColor: '#6B7280', // Gray color for inactive tabs
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          height: Platform.OS === 'ios' ? 90 : 70,
+          paddingBottom: Platform.OS === 'ios' ? 30 : 10,
+          paddingTop: 10,
+          borderTopWidth: 1,
+          borderTopColor: '#E5E7EB',
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+        },
       }}>
+      {/* Home tab */}
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name={'home'} color={color} size={26} />
+          ),
+        }}
+      />
       {/* Log Tab */}
       <Tabs.Screen
-        name="log"
+        name="plan"
         options={{
-          title: 'Log',
+          title: 'Plan',
           tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons 
             name={focused ? 'pencil-plus' : 'pencil-plus-outline'} 
@@ -29,23 +52,13 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* Workouts Tab */}
+      {/* Lift Tab */}
       <Tabs.Screen
-        name="workouts"
+        name="lift"
         options={{
-          title: 'Workouts',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'barbell' : 'barbell-sharp'} color={color} />
-          ),
-        }}
-      />
-      {/* Home Tab */}
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          title: 'Lift',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name={'cards'} color={color} size={26}/>
           ),
         }}
       />
